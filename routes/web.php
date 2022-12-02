@@ -33,9 +33,9 @@ require __DIR__.'/auth.php';
 
 Route::controller(MahasiswaController::class)->group(function () {
     Route::get('mahasiswa', 'index')->middleware('auth');
-    Route::get('tambah-mahasiswa', 'create')->middleware('auth');;
-    Route::post('tambah-mahasiswa', 'store')->middleware('auth');;
-    Route::get('edit/{nim}', 'edit')->middleware('auth');;
-    Route::put('update/{nim}', 'update')->middleware('auth');;
-    Route::get('delete/{nim}', 'destroy')->middleware('auth');;
+    Route::get('tambah-mahasiswa', 'create')->middleware('auth');
+    Route::post('tambah-mahasiswa', 'store')->middleware('auth');
+    Route::get('edit/{nim}', 'edit')->middleware('auth');
+    Route::put('update/{nim}', 'update')->middleware('auth');
+    Route::get('delete/{nim}', 'destroy')->middleware('auth');
 });
