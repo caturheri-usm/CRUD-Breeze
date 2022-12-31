@@ -6,7 +6,6 @@ use App\Http\Requests\MahasiswaFormRequest;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
-
 class MahasiswaController extends Controller
 {
     /**
@@ -16,7 +15,7 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $data = Mahasiswa::all();
+        $data = Mahasiswa::paginate(5);
         return view('mahasiswa.index',compact('data'));
     }
 
@@ -39,10 +38,8 @@ class MahasiswaController extends Controller
     public function store(MahasiswaFormRequest $request)
     {
         $data = $request->validated();
-
         $mahasiswa = Mahasiswa::create($data);
         return redirect('mahasiswa')->with('message','Data Mahasiswa Berhasil Ditambah!');
-        
     }
 
     /**
@@ -78,16 +75,16 @@ class MahasiswaController extends Controller
     public function update(MahasiswaFormRequest $request, $nim)
     {
         $data = $request->validated();
-        $mahasiswa = Mahasiswa::where('nim', $nim)->update([
-            'nim' => $data['nim'],
-            'nama' => $data['nama'],
-            'umur' => $data['umur'],
-            'alamat' => $data['alamat'],
-            'kota' => $data['kota'],
-            'kelas' => $data['kelas'],
-            'jurusan' => $data['jurusan']
-        ]);
-        return redirect('mahasiswa')->with('message','Data Mahasiswa Berhasil diperbarui!');
+            $mahasiswa = Mahasiswa::where('nim', $nim)->update([
+                'nim' => $data['nim'],
+                'nama' => $data['nama'],
+                'umur' => $data['umur'],
+                'alamat' => $data['alamat'],
+                'kota' => $data['kota'],
+                'kelas' => $data['kelas'],
+                'jurusan' => $data['jurusan']
+            ]);
+        return redirect('mahasiswa')->with('message','Data Mahasiswa Berhasil Diperbarui!');
     }
 
     /**
@@ -99,6 +96,6 @@ class MahasiswaController extends Controller
     public function destroy($nim)
     {
         $data = Mahasiswa::find($nim)->delete();
-        return redirect('mahasiswa')->with('message','Data Mahasiswa Berhasil dihapus!');
+        return redirect('mahasiswa')->with('message','Data Mahasiswa Berhasil Dihapus!');
     }
 }

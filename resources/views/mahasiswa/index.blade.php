@@ -11,6 +11,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <x-success-status class="mb-4" :status="session('message')" />
             <div class="py-4 px-4 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <a href="{{ url('tambah-mahasiswa') }}"
+                    class="inline-flex items-center mb-2 px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">Tambah Data</a>
                 <div class="flex flex-col">
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -45,7 +47,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data as $item)  
+                                        @forelse ($data as $item)
                                         <tr class="border-b">
                                             <td
                                                 class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white border-r">
@@ -58,26 +60,37 @@
                                                 class="text-sm text-white font-light px-6 py-4 whitespace-nowrap border-r">
                                                 {{ $item->umur }}
                                             </td>
-                                            <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
+                                            <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap border-r">
                                                 {{ $item->alamat }}
                                             </td>
-                                            <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
+                                            <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap border-r">
                                                 {{ $item->kota }}
                                             </td>
-                                            <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
+                                            <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap border-r">
                                                 {{ $item->kelas }}
                                             </td>
-                                            <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
+                                            <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap border-r">
                                                 {{ $item->jurusan }}
                                             </td>
                                             <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
-                                                <a href="{{ url('/edit/'.$item->nim) }}" class="inline-flex mr-2 items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">Edit</a>
-                                                <a href="{{ url('/delete/'.$item->nim) }}" onclick="return confirm('Apakah Anda yakin menghapus data ini?')" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">Delete</a>
+                                                <a href="{{ url('/edit/'.$item->nim) }}"
+                                                    class="inline-flex mr-2 items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">Edit</a>
+                                                <a href="{{ url('/delete/'.$item->nim) }}"
+                                                    onclick="return confirm('Apakah Anda yakin menghapus data ini?')"
+                                                    class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">Delete</a>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                        @empty
+                                        <tr>
+                                            <td colspan="9"
+                                                class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white border-r">
+                                                Data Tidak Ditemukan
+                                            </td>
+                                        </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
+                                <div class="mt-3">{{ $data->links() }}</div>
                             </div>
                         </div>
                     </div>

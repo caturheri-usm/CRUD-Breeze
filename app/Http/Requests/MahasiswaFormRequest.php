@@ -26,7 +26,7 @@ class MahasiswaFormRequest extends FormRequest
         return [
             'nim' => [
                 'required',
-                'max:11'
+                'max:15',
             ],
             'nama' => [
                 'required',
@@ -34,6 +34,8 @@ class MahasiswaFormRequest extends FormRequest
             ],
             'umur' => [
                 'required',
+                'integer',
+                'max:99'
             ],
             'alamat' => [
                 'required',
@@ -52,5 +54,6 @@ class MahasiswaFormRequest extends FormRequest
                 'max:50'
             ]
         ];
+
     }
 }

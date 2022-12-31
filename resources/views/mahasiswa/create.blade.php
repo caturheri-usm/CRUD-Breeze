@@ -25,7 +25,7 @@
                     </div>
                     <div>
                         <x-input-label for="umur" :value="__('Umur')" class="mt-3"/>
-                        <x-text-input id="umur" class="block mt-1 w-full" type="text" name="umur" :value="old('umur')" required autofocus />
+                        <x-text-input id="umur" class="block mt-1 w-full" type="number" name="umur" :value="old('umur')" required autofocus />
                         <x-input-error :messages="$errors->get('umur')" class="mt-2" />
                     </div>
                     <div>
@@ -48,12 +48,13 @@
                         <x-text-input id="jurusan" class="block mt-1 w-full" type="text" name="jurusan" :value="old('jurusan')" required autofocus />
                         <x-input-error :messages="$errors->get('jurusan')" class="mt-2" />
                     </div>
-                    <x-primary-button class="ml-3 mt-3">
+                    <x-primary-button class="ml-3 mt-4">
                         {{ __('Tambah') }}
                     </x-primary-button>
+                    <a href="{{ url('/mahasiswa/') }}"
+                        class="inline-flex ml-2 items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">Batal</a>
                 </form>
             </div>
         </div>
     </div>
-
 </x-app-layout>
